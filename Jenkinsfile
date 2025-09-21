@@ -5,13 +5,10 @@ pipeline {
         }
     }
 
-environment {
-        PATH = "/opt/apache-maven-3.9.4/bin:$PATH"
-}
     stages {
-        stage("Build") {
+        stage('Clone-code') {
             steps {
-                sh 'mvn clean deploy'
+                git branch: 'main', url: 'https://github.com/Krish8896/tweet-trend-new-devops-.git'
             }
         }
     }
