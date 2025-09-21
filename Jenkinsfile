@@ -13,5 +13,10 @@ environment {
                 sh 'mvn clean deploy'
             }
         }
+        stage('Archive Artifacts') {
+            steps {
+                archiveArtifacts artifacts: 'target/**', fingerprint: true
+            }
+        }
     }
 }
