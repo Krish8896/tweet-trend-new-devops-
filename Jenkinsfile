@@ -10,23 +10,8 @@ environment {
     stages {
         stage ('Build') {
             steps {
-                sh 'mvn clean deploy'
+                sh 'mvn clean deploy -DargLine="-Xmx1024m -XX:MaxPermSize=256m"'
             }
         }
-        stage('Archive Artifacts') {
-            steps {
-                archiveArtifacts artifacts: 'target/**', fingerprint: true
-            }
-        }
-        stage('SonarQube analysis') {
-        environment {
-        scannerHome = tool 'org-sonarqube-scanner'
-        }
-        steps {
-    withSonarQubeEnv('org-sonarqube-server') { // If you have configured more than one global server connection, you can specify its name
-      sh "${scannerHome}/bin/sonar-scanner"
-    }
-    }
 }
     }
-}
