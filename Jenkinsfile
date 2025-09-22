@@ -10,7 +10,7 @@ environment {
     stages {
         stage ('Build') {
             steps {
-                sh 'mvn clean deploy -DargLine="-Xmx1024m -XX:MaxPermSize=256m"'
+                sh 'mvn clean deploy'
             }
         }
 }
