@@ -14,11 +14,13 @@ environment {
                 sh 'mvn clean deploy -Dmaven.test.skip=true'  // Skip tests during build
                 echo 'Build completed.'
             }
+        }
         stage('test') {
             steps {
                 echo 'Running tests...'
                 sh 'mvn surefire-report:report'
                 echo 'Tests completed.'
+            }
         }
         stage('SonarQube analysis') {
         environment {
